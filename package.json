@@ -1,0 +1,24 @@
+{
+  "name": "squarestatus",
+  "version": "1.0.0",
+  "description": "a bot that checks squarespace system status and reports back to a slack channel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwickett/squarespace-status-bot.git"
+  },
+  "keywords": [
+    "slack",
+    "bot",
+    "squarespace"
+  ],
+  "author": "Mike Wickett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwickett/squarespace-status-bot/issues"
+  },
+  "homepage": "https://github.com/mwickett/squarespace-status-bot#readme"
+}
