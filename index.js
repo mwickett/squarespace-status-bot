@@ -3,7 +3,8 @@ const https = require('https');
 var SlackBot = require('slackbots');
 var token_data = require('./priv-data');
 var sqsp_url = "https://1jkhm1drpysj.statuspage.io/api/v2/summary.json";
-var bad_url = "https://1jkhm1rpysj.statuspage.io/api/v2/summary.json";
+var token = ""; // Passte your token here
+var target = "tech_notifications"; // Put the name of the channel that you want notifications to go to (ie. general)
 
 //create a bot
 //See npmjs.com/package/slackbots
@@ -20,7 +21,7 @@ function printError(error){
 
 
 // Call status page end point at jkhm1drpysj.statuspage.io/api/v2/summary.json
-function check(url) {
+function check(target, url) {
 var request = https.get(url, function(res){
     var body = '';
 
@@ -33,10 +34,20 @@ var request = https.get(url, function(res){
         try {
           //parse the data
           var statusResponse = JSON.parse(body);
-          var status = statusResponse.status.description;
-          var message = "Squarespace says: " + status;
-          console.log(message);
-          bot.postMessageToUser('mike', message);
+          //console.log(statusResponse);
+          var label1 = statusResponse.components[0].name;
+          var label2 = statusResponse.components[1].name;
+          var status1 = statusResponse.components[0].status;
+          var status2 = statusResponse.components[1].status;
+
+          if (status1 === "operational" && status2 === "operational") {
+            console.log("Good to go");
+          } else {
+            var message = "Hey Mike & Erin! " + label1 + ": " + status1 + " -- " + label2 + ": " + status2;
+            console.log(message);
+            bot.postMessageToChannel(target, message);
+          }
+
         } catch(error) {
           //parse error
           printError(error);
@@ -49,4 +60,4 @@ var request = https.get(url, function(res){
   }).on('error', printError);
 }
 
-check(sqsp_url);
+check(target, sqsp_url);
