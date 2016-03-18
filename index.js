@@ -39,7 +39,7 @@ var request = https.get(url, function(res){
           var label2 = statusResponse.components[1].name;
           var status1 = statusResponse.components[0].status;
           var status2 = statusResponse.components[1].status;
-
+          
           if (status1 === "operational" && status2 === "operational") {
             console.log("Good to go");
           } else {
