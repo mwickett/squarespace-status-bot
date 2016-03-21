@@ -34,12 +34,12 @@ var request = https.get(url, function(res){
         try {
           //parse the data
           var statusResponse = JSON.parse(body);
-          //console.log(statusResponse);
+          console.log(statusResponse);
           var label1 = statusResponse.components[0].name;
           var label2 = statusResponse.components[1].name;
           var status1 = statusResponse.components[0].status;
           var status2 = statusResponse.components[1].status;
-          
+
           if (status1 === "operational" && status2 === "operational") {
             console.log("Good to go");
           } else {
