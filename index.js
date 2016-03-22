@@ -34,7 +34,7 @@ var request = https.get(url, function(res){
         try {
           //parse the data
           var statusResponse = JSON.parse(body);
-          console.log(statusResponse);
+          //console.log(statusResponse);
           var label1 = statusResponse.components[0].name;
           var label2 = statusResponse.components[1].name;
           var status1 = statusResponse.components[0].status;
@@ -60,4 +60,6 @@ var request = https.get(url, function(res){
   }).on('error', printError);
 }
 
-check(target, sqsp_url);
+var timer = setInterval(function() {
+  check(target, sqsp_url);
+}, 600000);
